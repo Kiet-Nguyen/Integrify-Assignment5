@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>JavaScript</title>
+</head>
+<body>
+  <h1>JavaScript Basic</h1>
+
+  <script>
+    /**
+     * EXERCISE 1
+    **/
+
+    // Part 1
+    let company = 'Integrify Academy';
+    // 1. a)
+      console.log(company);
+    // 1. b)
+      console.log(company.length);
+    // 1. c)
+      const comUpperCase = company.toUpperCase();
+      console.log(comUpperCase);
+    // 1. d)
+      const comLowerCase = company.toLowerCase();
+      console.log(comLowerCase);
+    // 1. e)
+      const companyArr = company.split(' ');
+      // slice()
+      const sliceMethod = companyArr.slice(0, 1);
+      console.log(sliceMethod);
+      // substring()
+      const subStrMethod = company.substring(0, 9);
+      console.log(subStrMethod);
+    // 1. f)
+      // String.prototype.includes()
+      const testIncludesStr = company.includes('Academy');
+      console.log(testIncludesStr);
+      // TypedArray.prototype.includes()
+      const testIncludesArr = companyArr.includes('Academy');
+      console.log(testIncludesArr);
+    // 1. g) 
+      console.log(companyArr);
+    // 1. h)
+      let replaceStr = /Integrify/gi;
+      const newCompany = company.replace(replaceStr, 'Microsoft');
+      console.log(newCompany);
+  </script>
+</body>
+</html>
