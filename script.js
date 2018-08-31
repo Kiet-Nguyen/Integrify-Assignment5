@@ -35,6 +35,25 @@ console.log(companyArr);
 let replaceStr = /Integrify/gi;
 const newCompany = company.replace(replaceStr, 'Microsoft');
 console.log(newCompany);
+// 1. i)
+const character = company.charAt(10);
+console.log(character);
+// 1. j)
+const charCode = company.charCodeAt(10);
+console.log(charCode);
+// 1. k)
+console.log(company.indexOf('e'));
+// 1. l)
+console.log(company.lastIndexOf('e'));
+// 1. m)
+const trimStr = ' Integrify Academy ';
+console.log(trimStr.trim());
+// 1. n)
+console.log(company.startsWith('I'));
+// 1. o)
+console.log(company.endsWith('my'));
+// 1. p)
+console.log(company.match('a'));
 
 // 2.
 const myAge = 25;
@@ -260,6 +279,48 @@ function rgbColorGenerator() {
 }
 console.log(rgbColorGenerator());
 
+// 15. Reverse array
+function reverseArray(arr) {
+  for (let index = (arr.length - 1); index >= 0; index--) {
+    console.log(arr[index]);
+  }
+}
+const myArr = [...company];
+reverseArray(myArr);
+
+// 16. Capitalized array
+function capitalizeArray(arr) {
+  for (let index = 0; index < arr.length; index++) {
+    let capElement = arr[index].toUpperCase();
+    console.log(capElement);
+  }
+}
+capitalizeArray(myArr);
+
+// 17. Remove item in array
+function removeItem(arr) {
+  arr.splice(5, 3);
+  console.log(arr);
+}
+removeItem(myArr);
+
+// 17. Remove item in array
+function addItem(arr, newItem) {
+  arr.push(newItem);
+  console.log(arr);
+}
+addItem(myArr, 'K', 'i');
+
+// 18. Sum of all numbers in a given range
+function sumOfNumbers(num) {
+  let sum = 0;
+  for (let index = 0; index <= num; index++) {
+    sum += index;
+  }
+  console.log(sum);
+} 
+sumOfNumbers(10);
+
 /***** Part 2 *****/
 
 // 1.
@@ -367,31 +428,41 @@ const personAccount = {
     }
   ],
   totalIncome() {
-    const totalInc = this.incomes.reduce( 
-      (acc, curr) => acc += curr.income, 
-      0 
+    const totalInc = this.incomes.reduce(
+      (acc, curr) => (acc += curr.income),
+      0
     );
     return totalInc;
   },
   totalExpense() {
-    const totalExp = this.expenses.reduce( 
-      (acc, curr) => acc += curr.expense, 
-      0 
+    const totalExp = this.expenses.reduce(
+      (acc, curr) => (acc += curr.expense),
+      0
     );
     return totalExp;
   },
   accountBalance() {
     let balance = this.totalIncome() - this.totalExpense();
     return balance;
+  },
+  accountInfo() {
+    console.log(`
+      Account name: ${this.firstName} ${this.lastName}
+      Total incomes: ${this.totalIncome()} 
+      Total expenses: ${this.totalExpense()}
+      Balance: ${this.accountBalance()}
+    `);
   }
 };
 
 // Ouput result
-let totalInc = personAccount.totalIncome();
-console.log('Total income:', totalInc);
+// let totalInc = personAccount.totalIncome();
+// console.log('Total income:', totalInc);
 
-let totalExp = personAccount.totalExpense();
-console.log('Total expenses:', totalExp);
+// let totalExp = personAccount.totalExpense();
+// console.log('Total expenses:', totalExp);
 
-let balance = personAccount.accountBalance();
-console.log('My balance:', balance);
+// let balance = personAccount.accountBalance();
+// console.log('My balance:', balance);
+
+personAccount.accountInfo();
