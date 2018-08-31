@@ -466,3 +466,24 @@ const personAccount = {
 // console.log('My balance:', balance);
 
 personAccount.accountInfo();
+
+// Generate random UUID
+function generateUUID() {
+  let id = new Array(10);
+
+  // Generate random number or character
+  let uuidArr = [...id].map( curr => {
+    let randomNum = Math.floor(Math.random() * 36);
+    let randomNumToStr = randomNum.toString(36);
+    let isUppercase = Math.random() > 0.5;
+
+    return (curr = isUppercase ? randomNumToStr.toUpperCase() : randomNumToStr);
+  });
+
+  // Join the uuid array 
+  let uuid = uuidArr.join('');
+
+  return uuid;
+}
+
+console.log(generateUUID());
