@@ -194,7 +194,8 @@ console.log(randomHexaNumberGenerator());
 
 // 11. Generate random ID (default id has 7 characters)
 function userIdGenerator(idLength = 7) {
-  const alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!€%&/?*#';
+  const alphabet =
+    '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!€%&/?*#';
   let randomID = '';
   let randomNumber = Math.floor(Math.random() * alphabet.length);
 
@@ -241,7 +242,9 @@ function displayDateTime() {
   // let dateFormat = today.toLocaleDateString('en-FI', options);
 
   let today = new Date();
-  let datestring = `${today.toLocaleDateString('en-FI')} ${today.getHours()}:${today.getMinutes()}`;
+  let datestring = `${today.toLocaleDateString(
+    'en-FI'
+  )} ${today.getHours()}:${today.getMinutes()}`;
   console.log(datestring);
 }
 displayDateTime();
@@ -288,26 +291,27 @@ console.log(numberOfRows());
 */
 
 // 3.
+/*
+function generateNumbers() {
+  let resultArr = new Array(7);
+  // add random numbers into array
+  for (let index = 0; index < resultArr.length; index++) {
+    const randomNumber = Math.floor(Math.random() * 10);
+    resultArr[index] = randomNumber;
+  }
+  // Sort array in asending order
+  let sortedArr = [...resultArr];
+  sortedArr.sort(function (a, b) {
+    return a - b;
+  });
+  // Joins sorted array
+  let joinedArr = sortedArr.join(' ');
+  return joinedArr;
+}
+
 function lotteryNumRows() {
   let rows = prompt('How many rows?');
   let rowsInt = parseInt(rows);
-
-  function generateNumbers() {
-    let resultArr = new Array(7);
-    // add random numbers into array
-    for (let index = 0; index < resultArr.length; index++) {
-      const randomNumber = Math.floor(Math.random() * 10);
-      resultArr[index] = randomNumber;
-    }
-    // Sort array in asending order
-    let sortedArr = [...resultArr];
-    sortedArr.sort(function (a, b) {
-      return a - b;
-    });
-    // Joins sorted array
-    let joinedArr = sortedArr.join(' ');
-    return joinedArr;
-  }
 
   // Output rows 
   if (rowsInt === 1) {
@@ -318,5 +322,76 @@ function lotteryNumRows() {
     }
   }
 }
-lotteryNumRows();
+lotteryNumRows()
 // console.log(lotteryNumRows());
+*/
+
+// 20. OBJECT
+const personAccount = {
+  firstName: 'John',
+  lastName: 'Doe',
+  incomes: [
+    {
+      income: 1000,
+      description: 'Win lottery'
+    },
+    {
+      income: 3000,
+      description: 'Monthly salary'
+    },
+    {
+      income: 1000,
+      description: 'Project'
+    },
+    {
+      income: 100,
+      description: 'Birthday gift'
+    }
+  ],
+  expenses: [
+    {
+      expense: 100,
+      description: 'Buy food'
+    },
+    {
+      expense: 2000,
+      description: 'Buy new sofa'
+    },
+    {
+      expense: 100,
+      description: 'Gift'
+    },
+    {
+      expense: 500,
+      description: 'Gas'
+    }
+  ],
+  totalIncome() {
+    const totalInc = this.incomes.reduce( 
+      (acc, curr) => acc += curr.income, 
+      0 
+    );
+    return totalInc;
+  },
+  totalExpense() {
+    const totalExp = this.expenses.reduce( 
+      (acc, curr) => acc += curr.expense, 
+      0 
+    );
+    return totalExp;
+  },
+  accountBalance() {
+    let balance = this.totalIncome() - this.totalExpense();
+    return balance;
+  }
+};
+
+// Ouput result
+let totalInc = personAccount.totalIncome();
+console.log('Total income:', totalInc);
+
+let totalExp = personAccount.totalExpense();
+console.log('Total expenses:', totalExp);
+
+let balance = personAccount.accountBalance();
+console.log('My balance:', balance);
