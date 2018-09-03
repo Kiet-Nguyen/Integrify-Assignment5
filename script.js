@@ -161,12 +161,15 @@ console.log(itCompanies.reverse());
 */
 
 // 6.
+/*
 for (let i = 0; i < itCompanies.length; i++) {
   console.log(itCompanies[i]);
   console.log(itCompanies[i].toUpperCase());
 }
+*/
 
 // 7. Print items in an array
+/*
 function printArray(arr) {
   let str = '';
   for (let i = 0; i < arr.length; i++) {
@@ -179,8 +182,10 @@ function printArray(arr) {
   console.log(str);
 }
 printArray(itCompanies);
+*/
 
 // 8. Sum of all Even numbers in a given range
+/*
 function sumOfEven(num) {
   let sum = 0;
   for (let i = 2; i <= num; i += 2) {
@@ -189,8 +194,10 @@ function sumOfEven(num) {
   return sum;
 }
 console.log(`Sum of all even numbers is ${sumOfEven(5)}`);
+*/
 
 // 9. Counts number of Odd numbers and Even numbers
+/*
 function evensAndOdds(num) {
   let numOfOdds = 0;
   let numOfEvens = 0;
@@ -205,8 +212,10 @@ function evensAndOdds(num) {
   console.log(`The number of odds are ${numOfOdds}.`);
 }
 evensAndOdds(100);
+*/
 
 // 10. Generate random Hex color code
+/*
 function randomHexaNumberGenerator() {
   let hexColorLength = 6;
   let hexColor = '#';
@@ -217,8 +226,10 @@ function randomHexaNumberGenerator() {
   return hexColor;
 }
 console.log(randomHexaNumberGenerator());
+*/
 
 // 11. Generate random ID (default id has 7 characters) - version 1
+/*
 function userIdGenerator(idLength = 7) {
   const alphabet =
     '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!€%&/?*#';
@@ -231,8 +242,10 @@ function userIdGenerator(idLength = 7) {
   return randomID;
 }
 // console.log(userIdGenerator());
+*/
 
 // Generate random ID - version 2
+/*
 function generateUUID(idLength = 10) {
   let id = new Array(idLength);
 
@@ -250,33 +263,22 @@ function generateUUID(idLength = 10) {
 
   return uuid;
 }
-
 console.log(generateUUID());
+*/
 
 // 12. Generate random ID: receive user's input on number of ID characters and number of IDs
 /*
 function userIdGeneratedByUser() {
-  const alphabet =
-    '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!€%&/?*#';
   let idLength = prompt('Please, choose your ID length.');
+  let idLengthToInt = parseInt(idLength);
   let numOfId = prompt('How many ID do you want to generate?');
-  
-  function randomChar() {
-    let randomID = '';
-    for (let i = 0; i < idLength; i++) {
-      let randomNumber = Math.floor(Math.random() * alphabet.length);
-      randomID += alphabet[randomNumber];
-    }
-    return randomID;
-  }
-
   let numOfIdToInt = parseInt(numOfId); 
 
   if (numOfIdToInt === 1) {
-    console.log(randomChar());
+    console.log('Your ID is:', generateUUID(idLengthToInt));
   } else {
-    for (let j = 0; j < numOfIdToInt; j++) {
-      console.log(randomChar());
+    for (let index = 0; index < numOfIdToInt; index++) {
+      console.log('ID:', generateUUID(idLengthToInt));
     }
   }
 }
@@ -299,6 +301,7 @@ displayDateTime();
 */
 
 // 14. Generate rgb color
+/*
 function rgbColorGenerator() {
   let firstRandNumber = Math.round(Math.random() * 255);
   let secondRandNumber = Math.round(Math.random() * 255);
@@ -308,8 +311,10 @@ function rgbColorGenerator() {
   return randomRgbColor;
 }
 console.log(rgbColorGenerator());
+*/
 
 // 15. Reverse array
+/*
 function reverseArray(arr) {
   for (let index = (arr.length - 1); index >= 0; index--) {
     console.log(arr[index]);
@@ -317,39 +322,49 @@ function reverseArray(arr) {
 }
 const myArr = [...company];
 reverseArray(myArr);
+*/
 
 // 16. Capitalized array
+/*
+let myArr = [...company];
 function capitalizeArray(arr) {
-  for (let index = 0; index < arr.length; index++) {
-    let capElement = arr[index].toUpperCase();
-    console.log(capElement);
-  }
+  const capitalizedElementArr = [];
+  arr.forEach( curr => capitalizedElementArr.push(curr.toUpperCase()) );
+
+  return (result = capitalizedElementArr.join(''));
 }
-capitalizeArray(myArr);
+console.log('Capitalized string', capitalizeArray(myArr));
+*/
 
 // 17. Remove item in array
+/*
 function removeItem(arr) {
   arr.splice(5, 3);
-  console.log(arr);
+  return arr;
 }
-removeItem(myArr);
+console.log('Remove items in an array', removeItem(myArr));
+*/
 
 // 17. Remove item in array
+/*
 function addItem(arr, newItem) {
   arr.push(newItem);
-  console.log(arr);
+  return arr;
 }
-addItem(myArr, 'K', 'i');
+console.log('Add items into an array', addItem(myArr, 'K', 'i'));
+*/
 
 // 18. Sum of all numbers in a given range
-function sumOfNumbers(num) {
+/*
+function sumOfANumber(num) {
   let sum = 0;
   for (let index = 0; index <= num; index++) {
     sum += index;
   }
-  console.log(sum);
+  return sum;
 } 
-sumOfNumbers(10);
+console.log('Sum of a number:', sumOfANumber(10));
+*/
 
 /***** Part 2 *****/
 
@@ -459,28 +474,30 @@ const personAccount = {
   ],
   totalIncome() {
     const totalInc = this.incomes.reduce(
-      (acc, curr) => (acc += curr.income),
-      0
+      (acc, curr) => (acc += curr.income)
+      , 0
     );
     return totalInc;
   },
   printEachIncome() {
-    let joinIncome = this.incomes.reduce( (acc, inc, index) => {
-      return acc += `Income ${index + 1}: ${inc.income} `;
-    }, '' );
+    let joinIncome = this.incomes.reduce( (acc, inc, index) => 
+      acc += `Income ${index + 1}: ${inc.income} `
+      , '' 
+    );
     return joinIncome;
   },
   totalExpense() {
     const totalExp = this.expenses.reduce(
-      (acc, curr) => (acc += curr.expense),
-      0
+      (acc, curr) => (acc += curr.expense)
+      , 0
     );
     return totalExp;
   },
   printEachExpense() {
-    let joinExpense = this.expenses.reduce( (acc, exp, index) => {
-      return (acc += `Expense ${index + 1}: ${exp.expense} `);
-    }, '' );
+    let joinExpense = this.expenses.reduce( (acc, exp, index) => 
+      acc += `Expense ${index + 1}: ${exp.expense} `
+      , '' 
+    );
     return joinExpense;
   },
   accountBalance() {
@@ -500,3 +517,27 @@ const personAccount = {
 };
 
 personAccount.accountInfo();
+
+// 21. Calculate annual income
+const myIncomes = {
+  incomes: [
+    {
+      income: 4000,
+      description: 'Monthly salary'
+    },
+    {
+      income: 10000,
+      description: 'Annual bonus'
+    }, 
+    {
+      income: 5500,
+      description: 'Online courses'
+    }
+  ],
+  annualIncome() {
+    const annualInc = this.incomes.reduce( (acc, curr) => acc += curr.income, 0 );
+    return annualInc;
+  }
+};
+console.log('My annual income: ', myIncomes.annualIncome());
+
