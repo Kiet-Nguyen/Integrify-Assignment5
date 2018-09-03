@@ -4,6 +4,7 @@
 
 /***** Part 1 *****/
 let company = 'Integrify Academy';
+/*
 // 1. a)
 console.log(company);
 // 1. b)
@@ -54,8 +55,10 @@ console.log(company.startsWith('I'));
 console.log(company.endsWith('my'));
 // 1. p)
 console.log(company.match('a'));
+*/
 
 // 2.
+/*
 const myAge = 25;
 const yourAge = 30;
 document
@@ -64,6 +67,7 @@ document
 document
   .querySelector('.your-age')
   .insertAdjacentHTML('afterbegin', `You are ${yourAge} years old.`);
+*/
 
 // 3.
 /*
@@ -111,6 +115,7 @@ if (userInput > myAge) {
 */
 
 // 5.
+
 const itCompanies = [
   'Facebook',
   'Google',
@@ -120,6 +125,7 @@ const itCompanies = [
   'Oracle',
   'Amazon'
 ];
+/*
 // 5. a)
 console.log(itCompanies);
 // 5. b)
@@ -152,6 +158,7 @@ console.log(
 // 5. f)
 console.log(itCompanies.sort());
 console.log(itCompanies.reverse());
+*/
 
 // 6.
 for (let i = 0; i < itCompanies.length; i++) {
@@ -211,7 +218,7 @@ function randomHexaNumberGenerator() {
 }
 console.log(randomHexaNumberGenerator());
 
-// 11. Generate random ID (default id has 7 characters)
+// 11. Generate random ID (default id has 7 characters) - version 1
 function userIdGenerator(idLength = 7) {
   const alphabet =
     '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!€%&/?*#';
@@ -224,6 +231,27 @@ function userIdGenerator(idLength = 7) {
   return randomID;
 }
 // console.log(userIdGenerator());
+
+// Generate random ID - version 2
+function generateUUID(idLength = 10) {
+  let id = new Array(idLength);
+
+  // Generate random number or character
+  let uuidArr = [...id].map(curr => {
+    let randomNum = Math.floor(Math.random() * 36);
+    let randomNumToStr = randomNum.toString(36);
+    let isUppercase = Math.random() > 0.5;
+
+    return (curr = isUppercase ? randomNumToStr.toUpperCase() : randomNumToStr);
+  });
+
+  // Join the uuid array 
+  let uuid = uuidArr.join('');
+
+  return uuid;
+}
+
+console.log(generateUUID());
 
 // 12. Generate random ID: receive user's input on number of ID characters and number of IDs
 /*
@@ -256,6 +284,7 @@ userIdGeneratedByUser();
 */
 
 // 13. Displays date and time
+/*
 function displayDateTime() {
   // let options = { day: 'numeric', month: 'numeric', year: 'numeric', 'hour': 'numeric', 'minute': 'numeric'  };
   // let dateFormat = today.toLocaleDateString('en-FI', options);
@@ -267,6 +296,7 @@ function displayDateTime() {
   console.log(datestring);
 }
 displayDateTime();
+*/
 
 // 14. Generate rgb color
 function rgbColorGenerator() {
@@ -434,12 +464,24 @@ const personAccount = {
     );
     return totalInc;
   },
+  printEachIncome() {
+    let joinIncome = this.incomes.reduce( (acc, inc, index) => {
+      return acc += `Income ${index + 1}: ${inc.income} `;
+    }, '' );
+    return joinIncome;
+  },
   totalExpense() {
     const totalExp = this.expenses.reduce(
       (acc, curr) => (acc += curr.expense),
       0
     );
     return totalExp;
+  },
+  printEachExpense() {
+    let joinExpense = this.expenses.reduce( (acc, exp, index) => {
+      return (acc += `Expense ${index + 1}: ${exp.expense} `);
+    }, '' );
+    return joinExpense;
   },
   accountBalance() {
     let balance = this.totalIncome() - this.totalExpense();
@@ -448,42 +490,13 @@ const personAccount = {
   accountInfo() {
     console.log(`
       Account name: ${this.firstName} ${this.lastName}
+      All incomes: ${this.printEachIncome()}
       Total incomes: ${this.totalIncome()} 
+      All expenses: ${this.printEachExpense()}
       Total expenses: ${this.totalExpense()}
       Balance: ${this.accountBalance()}
     `);
   }
 };
 
-// Ouput result
-// let totalInc = personAccount.totalIncome();
-// console.log('Total income:', totalInc);
-
-// let totalExp = personAccount.totalExpense();
-// console.log('Total expenses:', totalExp);
-
-// let balance = personAccount.accountBalance();
-// console.log('My balance:', balance);
-
 personAccount.accountInfo();
-
-// Generate random UUID
-function generateUUID() {
-  let id = new Array(10);
-
-  // Generate random number or character
-  let uuidArr = [...id].map( curr => {
-    let randomNum = Math.floor(Math.random() * 36);
-    let randomNumToStr = randomNum.toString(36);
-    let isUppercase = Math.random() > 0.5;
-
-    return (curr = isUppercase ? randomNumToStr.toUpperCase() : randomNumToStr);
-  });
-
-  // Join the uuid array 
-  let uuid = uuidArr.join('');
-
-  return uuid;
-}
-
-console.log(generateUUID());
