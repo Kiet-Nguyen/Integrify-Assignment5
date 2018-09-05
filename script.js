@@ -577,13 +577,12 @@ const countries = ["Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "An
 // a. Returns array only with string items.
 const randomArr = ['hello', 1, 2, 'world', 3];
 function getStringLists(arr) {
-  const strArr = [];
-  arr.map( curr => {
+  let newArr = arr.filter( curr => {
     if (typeof (curr) === 'string') {
-      strArr.push(curr);
+      return curr;
     }
   } );
-  return strArr;
+  return newArr;
 }
 console.log(getStringLists(randomArr));
 
@@ -622,16 +621,26 @@ console.log(
   categorizeCountries(countries, 'A', 'A')
 );
 
+// e. Find out how many initial letter in countries array
+function printCount(arr) {
+  Object.entries(arr).forEach(([key, value]) =>
+    console.log(`The array has ${value} countries start with ${key}`)
+  );
+}
+
 function startCharOfAllContries(arr) {
   const count = {};
+  
   // Array of initial letters of all countries
   const charArr = arr.map( curr => curr.charAt(0) );
   
-  // Count same initial letter
-  charArr.forEach( curr => {
-    count[curr] = (count[curr] || 0) + 1;
+  // Count all initial letters that have same value
+  charArr.forEach( currInitialLetter => {
+    count[currInitialLetter] = (count[currInitialLetter] || 0) + 1;
   } );
-  return count;
+  
+  // print count's key and value to console
+  printCount(count);
 }
-console.log(startCharOfAllContries(countries));
 
+startCharOfAllContries(countries);
