@@ -638,7 +638,6 @@ function startCharOfAllContries(arr) {
   charArr.forEach( currInitialLetter => {
     count[currInitialLetter] = (count[currInitialLetter] || 0) + 1;
   } );
-  
   // print count's key and value to console
   printCount(count);
 }
