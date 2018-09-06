@@ -621,7 +621,7 @@ console.log(
   categorizeCountries(countries, 'A', 'A')
 );
 
-// e. Find out how many initial letter in countries array
+// e. Find out how many initials letter in countries array
 function printCount(arr) {
   Object.entries(arr).forEach(([key, value]) =>
     console.log(`The array has ${value} countries start with ${key}`)
