@@ -4,18 +4,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
   <title>JavaScript</title>
 </head>
 <body>
-  <h1>JavaScript Basic</h1>
+  <div class="container">
+    <div class="generator-container">
+      <div class="generator">
+        <h1 class="js-heading generator__heading">Hexadecimal Color Generator</h1>
+        
+        <form class="generator__form">
+          <input type="number" id="js-input" class="input-field" placeholder="Enter a number greater than 5...">
 
-  <h2>2. Declare two variables myAge and yourAge and assign them initial values.</h2>
-  <p class="my-age"></p>
-  <p class="your-age"></p>
+          <div class="buttons">
+            <button class="btn bg-color-green js-generate" type="button">Generate</button>
+            <button class="btn bg-color-red js-stop" type="button">Stop</button>
+          </div>
+        </form>
 
-  <h2 class="part-3">3. Get user input using prompt(“Enter your age:”).</h2>
+        <p class="generator__text">Colors change people emotions so put meaningful colors on your site</p>
+      </div>
+      
+      <div class="generated-items">
 
-  <h2 class="part-4">4. Compare the values of myAge and yourAge using if … else.</h2>
-  <script src="script.js"></script>
+      </div>
+    </div>
+  </div>
+  
+  
+  <!-- <script src="js/script.js"></script> -->
+  <script src="js/script-DOM.js"></script>
 </body>
 </html>

@@ -1,0 +1,159 @@
+* {
+	margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --cameo-pink: #edbfc6;
+  --pardise-pink: #f0386b;
+  --pink-rasberry: #89023e;
+  --moutain-meadow: #35ce8d;
+  --polished-pine: #6ba292;
+  --jet: #333232;
+  --glitter: #e3f2fd;
+  --white: #fff;
+}
+
+html {
+  font-size: 100%;
+  font-weight: 500;
+}
+
+body {
+  line-height: 1;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--jet);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  width: 70rem;
+  max-width: 100%;
+  min-height: 100vh;
+  margin: auto;
+  padding: 3rem 1rem;
+  background-color: var(--glitter);
+}
+
+.generator-container {
+  width: 43.75rem;
+  max-width: 100%;
+  text-align: center;
+}
+
+.generator {
+  border-radius: 6px;
+  margin-bottom: 2rem;
+  padding: 1rem 4rem;
+  background-color: var(--cameo-pink);
+}
+
+.generator__heading {
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+}
+
+.generator__form {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.input-field {
+  width: 24rem;
+  border-radius: 6px;
+  padding: 0.5rem 2rem;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.input-field:focus {
+  outline: none;
+}
+
+.input-field::placeholder {
+  text-align: center;
+  color: var(--jet);
+}
+
+.input-field:focus::placeholder {
+  color: transparent;
+}
+
+.btn {
+  width: 5rem;
+  border-radius: 6px;
+  padding: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--white);
+  cursor: pointer;
+}
+
+.btn:focus,
+.btn:active {
+  outline: none;
+}
+
+.bg-color-green {
+  background-color: var(--moutain-meadow);
+}
+
+.bg-color-green:hover {
+  background-color: var(--polished-pine);
+}
+
+.bg-color-red {
+  background-color: var(--pardise-pink);
+}
+
+.bg-color-red:hover {
+  background-color: var(--pink-rasberry);
+}
+
+.btn-copy {
+  color: var(--jet);
+}
+
+.generator__text {
+  font-size: 0.8rem;
+}
+
+/* Generated items */
+.generated-item {
+  min-height: 6.875rem;
+  border-radius: 6px;
+  margin-bottom: 3px;
+  padding: 4rem;
+  cursor: pointer;
+  text-align: left;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  transition: all 0.2s;
+}
+
+/**
+  * RESPONSIVE BREAKPOINT
+*/
+
+@media only screen and (max-width: 708px) {
+  .input-field {
+    width: 100%;
+  }
+
+  .buttons {
+    padding-top: 1rem;
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  .generator {
+    padding: 1rem 3rem;
+  }
+}
