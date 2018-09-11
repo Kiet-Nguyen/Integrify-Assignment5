@@ -47,7 +47,7 @@ body {
 .generator {
   border-radius: 6px;
   margin-bottom: 2rem;
-  padding: 1rem 4rem;
+  padding: 2rem 4rem;
   background-color: var(--cameo-pink);
 }
 
@@ -129,13 +129,17 @@ body {
   min-height: 6.875rem;
   border-radius: 6px;
   margin-bottom: 3px;
-  padding: 4rem;
+  padding: 3rem 4rem;
   cursor: pointer;
   text-align: left;
   font-size: 1.2rem;
   display: flex;
   justify-content: space-between;
-  transition: all 0.2s;
+  align-items: center;
+}
+
+.text-color {
+  mix-blend-mode: color-burn;
 }
 
 /**
@@ -156,4 +160,8 @@ body {
   .generator {
     padding: 1rem 3rem;
   }
+}
+
+.hide {
+  display: none;
 }
