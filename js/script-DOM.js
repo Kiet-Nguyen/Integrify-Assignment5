@@ -23,11 +23,11 @@ const markup = `
 function addElement() {
   let inputValue = elements.inputField.value;
   const items = elements.itemsContainer;
-  items.innerHTML = ' ';
 
   // By default, generator generates 5 divs with random background colors, when the input field has a value lower than 5.
   inputValue <= 5 ? (inputValue = 5) : (inputValue = elements.inputField.value);
 
+  items.innerHTML = ' ';
   for (let index = 0; index < inputValue; index++) {
     items.insertAdjacentHTML('afterbegin', markup);
   }
@@ -35,6 +35,7 @@ function addElement() {
 
 function setBgColor(item) {
   item.children[0].textContent = item.style.backgroundColor = randomHexaNumberGenerator();
+  // Hide or display copy button
   if (item.children[1].classList.contains('hide')) {
     item.children[1].classList.remove('hide');
   }
@@ -45,24 +46,42 @@ function changeBgColor() {
   let itemsArr = Array.from(items.children);
 
   itemsArr.forEach((item, itemIndex) => {
-    // Adds id for each div
-    item.setAttribute('id', itemIndex + 1);
-
     // Clears interval before set new
     if (intervalID[itemIndex]) {
       clearInterval(intervalID[itemIndex]);
     }
-    intervalID[itemIndex] = setInterval(() => setBgColor(item), 3000);
+    intervalID[itemIndex] = setInterval(() => setBgColor(item), 2000);
 
-    // Stops generate random bg color
-    item.addEventListener('mouseover', () => {
-      clearInterval(intervalID[itemIndex]);
+    // Stops generate random bg color for selected div
+    item.addEventListener('mouseover', () =>
+      clearInterval(intervalID[itemIndex])
+    );
+
+    // Copy
+    item.children[1].addEventListener('click', () => {
+      let str = item.children[0].textContent;
+      copyToClipboard(str);
+      alert('Your required hexadecimal color is copied to clipboard.');
     });
   });
 }
 
+function copyToClipboard(str) {
+  const el = document.createElement('textarea');
+  el.value = str;
+  el.setAttribute('readonly', '');
+  el.style.position = 'absolute';
+  el.style.left = '-9999px';
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand('copy');
+  document.body.removeChild(el);
+}
+
 function stopInterval() {
-  clearInterval(intervalID);
+  Object.values(intervalID).forEach(curr => {
+    clearInterval(curr);
+  });
 }
 
 function clearInput() {
@@ -85,6 +104,3 @@ elements.generateButton.addEventListener('click', init);
 
 // Stops generate random background color for all divs
 elements.stopButton.addEventListener('click', stopInterval);
-
-// Copy hexcode
-// elements.copyButton.addEventListener('click', clickToCopy);
