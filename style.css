@@ -118,6 +118,12 @@ body {
 
 .btn-copy {
   color: var(--jet);
+  background-color: var(--white);
+  opacity: 0.8;
+}
+
+.btn-copy:hover {
+  transform: translateY(2px);
 }
 
 .generator__text {
@@ -130,7 +136,6 @@ body {
   border-radius: 6px;
   margin-bottom: 3px;
   padding: 3rem 4rem;
-  cursor: pointer;
   text-align: left;
   font-size: 1.2rem;
   display: flex;

@@ -34,13 +34,18 @@ function addElement() {
 }
 
 function setBgColor(item) {
-  item.children[0].textContent = item.style.backgroundColor = randomHexaNumberGenerator();
+  const pararaph = item.children[0];
+  pararaph.textContent = item.style.backgroundColor = randomHexaNumberGenerator();
   // Hide or display copy button
-  if (item.children[1].classList.contains('hide')) {
-    item.children[1].classList.remove('hide');
+  const copyBtn = item.children[1];
+  if (copyBtn.classList.contains('hide')) {
+    copyBtn.classList.remove('hide');
   }
 }
 
+/*************************
+ * Change background color for each div randomly
+ **/
 function changeBgColor() {
   const items = elements.itemsContainer;
   let itemsArr = Array.from(items.children);
@@ -57,25 +62,38 @@ function changeBgColor() {
       clearInterval(intervalID[itemIndex])
     );
 
-    // Copy
-    item.children[1].addEventListener('click', () => {
-      let str = item.children[0].textContent;
-      copyToClipboard(str);
-      alert('Your required hexadecimal color is copied to clipboard.');
-    });
+    // Click button to copy hexadecimal color code
+    clickToCopy(item);
   });
 }
 
+/*************************
+ * Copy to clipboard
+ **/
 function copyToClipboard(str) {
-  const el = document.createElement('textarea');
-  el.value = str;
-  el.setAttribute('readonly', '');
-  el.style.position = 'absolute';
-  el.style.left = '-9999px';
-  document.body.appendChild(el);
-  el.select();
-  document.execCommand('copy');
-  document.body.removeChild(el);
+  if (window.clipboardData && window.clipboardData.setData) {
+    // IE specific code path to prevent textarea being shown while dialog is visible.
+    return clipboardData.setData('Text', str);
+  } else if (
+    document.queryCommandSupported &&
+    document.queryCommandSupported('copy')
+  ) {
+    const el = document.createElement('textarea');
+    el.value = str;
+    el.setAttribute('readonly', '');
+    el.style.position = 'absolute';
+    el.style.left = '-9999px';
+    document.body.appendChild(el);
+    el.select();
+    try {
+      document.execCommand('copy');
+    } catch (error) {
+      console.warn('Copy to clipboard failed.', error);
+      return false;
+    } finally {
+      document.body.removeChild(el);
+    }
+  }
 }
 
 function stopInterval() {
@@ -104,3 +122,11 @@ elements.generateButton.addEventListener('click', init);
 
 // Stops generate random background color for all divs
 elements.stopButton.addEventListener('click', stopInterval);
+
+function clickToCopy(item) {
+  item.children[1].addEventListener('click', () => {
+    let str = item.children[0].textContent;
+    copyToClipboard(str);
+    alert('Your required hexadecimal color is copied to clipboard.');
+  });
+}
